@@ -1,50 +1,59 @@
 import React from 'react';
-import {BrowserRouter, Route, Link} from 'react-router-dom'
+import styled from 'styled-components'
+import {BrowserRouter, Route} from 'react-router-dom'
+import Header from './componentes/Header'
+import Inicio from './componentes/Inicio'
+import Blog from './componentes/Blog'
+import Acerca from './componentes/Acerca'
 
 
 const App = () => {
   return (
   <BrowserRouter>
-    <div>  
-      <header>
-        <h1>Mi blog personal</h1>
-        <nav>
-          <Link to="/">Inicio</Link>
-          <Link to="/blog">Blog</Link>
-          <Link to="acerca-de">Acerca de</Link>
-        </nav>
-      </header>
+    <ContenedorPrincipal>  
+      <Header />
 
-      <main>
-        <Route path="/" exact={true}>
-          <div>
-            <h2>Pagina de Inicio</h2>
-            <p>esta es la pagina principal</p>
-          </div>
-        </Route>
+      <Main>
         
-        <Route path="/blog">
-          <div>
-            <h2>Blog</h2>
-            <ul>
-              <li>Articulo #1</li>
-              <li>Articulo #2</li>
-              <li>Articulo #3</li>
-            </ul>
-          </div>
-        </Route>
-      
+      <Route path="/" exact={true} component={Inicio} />
+      <Route path="/blog" component={Blog} />
+      <Route path="/acerca-de" component={Acerca} />
+          
 
-        <Route path="/acerca-de">
-          <div>
-            <h2>ACerca de:</h2>
-            <p>esta es la pagina de acerca de...</p>
-          </div>
-        </Route>
-      </main>
-    </div>
+        {//Original ra asi, cambia por lo d arriba
+         //<Route path="/" exact={true}>
+          //<Inicio />
+        //</Route>
+        
+        //<Route path="/blog">
+          //<Blog />
+        //</Route>
+        
+        //<Route path="/acerca-de">
+          //<Acerca />
+        //</Route> 
+      }
+
+      </Main>
+    </ContenedorPrincipal>
   </BrowserRouter>
   );
 }
+
+
+
+const ContenedorPrincipal = styled.div`
+	padding: 40px;
+	width: 90%;
+	max-width: 700px;
+`;
+
+const Main = styled.main`
+	background: #fff;
+	padding: 40px;
+	border-radius: 10px;
+	box-shadow: 0px 0px 5px rgba(129, 129, 129, 0.1);
+`;
+
  
 export default App;
