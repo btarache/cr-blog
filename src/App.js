@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Route} from 'react-router-dom'
+import {BrowserRouter, Route, Link} from 'react-router-dom'
 
 
 const App = () => {
@@ -9,21 +9,21 @@ const App = () => {
       <header>
         <h1>Mi blog personal</h1>
         <nav>
-          <a href="">Inicio</a>
-          <a href="">Blog</a>
-          <a href="">Acerca de</a>
+          <Link to="/">Inicio</Link>
+          <Link to="/blog">Blog</Link>
+          <Link to="acerca-de">Acerca de</Link>
         </nav>
       </header>
 
       <main>
-        <Route path="/">
+        <Route path="/" exact={true}>
           <div>
             <h2>Pagina de Inicio</h2>
             <p>esta es la pagina principal</p>
           </div>
         </Route>
         
-        <Route path="blog">
+        <Route path="/blog">
           <div>
             <h2>Blog</h2>
             <ul>
@@ -35,7 +35,7 @@ const App = () => {
         </Route>
       
 
-        <Route path="acerca-de">
+        <Route path="/acerca-de">
           <div>
             <h2>ACerca de:</h2>
             <p>esta es la pagina de acerca de...</p>
