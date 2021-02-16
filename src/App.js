@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components'
-import {BrowserRouter, Route} from 'react-router-dom'
+import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import Header from './componentes/Header'
 import Inicio from './componentes/Inicio'
 import Blog from './componentes/Blog'
 import Acerca from './componentes/Acerca'
+import Post from './componentes/Post';
+import Error404 from './componentes/Error404';
 
 
 const App = () => {
@@ -13,28 +15,31 @@ const App = () => {
     <ContenedorPrincipal>  
       <Header />
 
-      <Main>
-        
-      <Route path="/" exact={true} component={Inicio} />
-      <Route path="/blog" component={Blog} />
-      <Route path="/acerca-de" component={Acerca} />
+        <Main>
+          <Switch>
+            <Route path="/" exact={true} component={Inicio} />
+            <Route path="/blog" component={Blog} />
+            <Route path="/post/:id" component={Post} />
+            <Route path="/acerca" component={Acerca} />
+            <Route component={Error404} />
+          </Switch>
+            
+
+          {//Original ra asi, cambia por lo d arriba
+          //<Route path="/" exact={true}>
+            //<Inicio />
+          //</Route>
           
+          //<Route path="/blog">
+            //<Blog />
+          //</Route>
+          
+          //<Route path="/acerca-de">
+            //<Acerca />
+          //</Route> 
+        }
 
-        {//Original ra asi, cambia por lo d arriba
-         //<Route path="/" exact={true}>
-          //<Inicio />
-        //</Route>
-        
-        //<Route path="/blog">
-          //<Blog />
-        //</Route>
-        
-        //<Route path="/acerca-de">
-          //<Acerca />
-        //</Route> 
-      }
-
-      </Main>
+        </Main>
     </ContenedorPrincipal>
   </BrowserRouter>
   );
